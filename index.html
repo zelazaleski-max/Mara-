@@ -271,12 +271,12 @@
   <main>
     <section class="hero">
       <div class="hero-text">
-        <h1>Find Your Signature Scent</h1>
+        <h1>ATTRACT MORE</h1>
         <p>
-          Discover curated fragrances for every mood, moment, and personality.
-          Luxury-inspired perfumes without the luxury markup.
+          Let them smell your scent from far.
+          They shall melt when you pass.
         </p>
-        <a href="#products" class="hero-btn">Shop Fragrances</a>
+        <a href="#products" class="hero-btn">OUR PRODUCTS</a>
       </div>
 
       <div class="hero-image" aria-label="Perfume bottle"></div>
@@ -338,13 +338,13 @@
     function renderProducts() {
       productGrid.innerHTML = products.map(product => `
         <article class="product-card">
-          <div class="product-image" style="background-image: url('${product.image}')"></div>
+          <div class="product-image" style="background-image: url('P{product.image}')"></div>
           <div class="product-info">
             <h3>P{product.name}</h3>
             <p>P{product.category}</p>
             <div class="product-bottom">
-              <span class="price">$${product.price}</span>
-              <button class="add-btn" data-id="${product.id}">Add to Cart</button>
+              <span class="price">P{product.price}</span>
+              <button class="add-btn" data-id="P{product.id}">Add to Cart</button>
             </div>
           </div>
         </article>
@@ -364,7 +364,7 @@
     });
 
     document.getElementById("cartBtn").addEventListener("click", () => {
-      alert(`You have ${count} item(s) in your cart.`);
+      alert(`You have P{count} item(s) in your cart.`);
     });
 
     renderProducts();
