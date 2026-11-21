@@ -340,10 +340,10 @@
         <article class="product-card">
           <div class="product-image" style="background-image: url('P{product.image}')"></div>
           <div class="product-info">
-            <h3>P{product.name}</h3>
-            <p>P{product.category}</p>
+            <h3>KING</h3>
+            <p>INUKA</p>
             <div class="product-bottom">
-              <span class="price">P{product.price}</span>
+              <span class="price">P220</span>
               <button class="add-btn" data-id="P{product.id}">Add to Cart</button>
             </div>
           </div>
@@ -368,6 +368,50 @@
     });
 
     renderProducts();
-  </script>
-</body>
+  <script>
+    const products = [
+      // ... (product list) ...
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const cartCount = document.getElementById("cartCount");
+    // 1. Create an empty "shopping list" to hold your products
+    let cart = [];
+
+    // 2. Function to automatically count and update the screen
+    function updateCartDisplay() {
+      const cartCountSpan = document.getElementById("cartCount");
+      cartCountSpan.textContent = cart.length; // Sets the number to the exact amount of items
+    }
+
+    // 3. Listen for clicks on ANY "Add to Cart" button
+    document.addEventListener("click", event => {
+      // Check if the thing you clicked is an "Add to Cart" button
+      if (event.target.classList.contains("add-btn")) {
+        
+        // Get the specific product ID from the button you clicked
+        const productId = event.target.getAttribute("data-id");
+        
+        // Add that product to the cart list
+        cart.push(productId);
+        
+        // Automatically update the number on the cart button
+        updateCartDisplay();
+        
+        // Change button text so the customer sees it worked
+        event.target.textContent = "Added ✓";
+
+        // Change it back after 1 second
+        setTimeout(() => {
+          event.target.textContent = "Add to Cart";
+        }, 1000);
+      }
+    });
+
+    // 4. Show an alert when the Cart button is clicked
+    document.getElementById("cartBtn").addEventListener("click", () => {
+      alert(`You have ${cart.length} item(s) in your cart!`);
+    });
+
+    // ... (other code) ...</body>
 </html>
