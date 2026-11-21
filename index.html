@@ -300,75 +300,86 @@
   </footer>
 
   <script>
-    const products = [
-      {
-        id: 1,
-        name: "Amber Noir",
-        category: "Warm & Spicy",
-        price: 89,
-        image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 2,
-        name: "Rose Éclat",
-        category: "Floral",
-        price: 79,
-        image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 3,
-        name: "INUKA",
-        category: "KING",
-        price: 220,
-        image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 4,
-        name: "INUKA",
-        category: "IGNITE",
-        price: 220,
-        image: "https://images.unsplash.com/photo-1619994403073-2cec844b8e63?auto=format&fit=crop&w=800&q=80"
-      }
-    ];
-
-    const productGrid = document.getElementById("productGrid");
-    const cartCount = document.getElementById("cartCount");
-    let count = 0;
-
-    function renderProducts() {
-      productGrid.innerHTML = products.map(product => `
-        <article class="product-card">
-          <div class="product-image" style="background-image: url('P{product.image}')"></div>
-          <div class="product-info">
-            <h3>KING</h3>
-            <p>INUKA</p>
-            <div class="product-bottom">
-              <span class="price">P220</span>
-              <button class="add-btn" data-id="P{product.id}">Add to Cart</button>
-            </div>
-          </div>
-        </article>
-      `).join("");
+  // 1. Your Product List
+  const products = [
+    {
+      id: 1,
+      name: "Amber Noir",
+      category: "Warm & Spicy",
+      price: 89,
+      image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 2,
+      name: "Rose Éclat",
+      category: "Floral",
+      price: 79,
+      image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 3,
+      name: "INUKA",
+      category: "KING",
+      price: 220,
+      image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      id: 4,
+      name: "Velvet Oud",
+      category: "Woody",
+      price: 119,
+      image: "https://images.unsplash.com/photo-1619994403073-2cec844b8e63?auto=format&fit=crop&w=800&q=80"
     }
+  ];
 
-    document.addEventListener("click", event => {
-      if (event.target.classList.contains("add-btn")) {
-        count++;
-        cartCount.textContent = count;
-        event.target.textContent = "Added ✓";
+  // 2. Variables and Cart Setup
+  const productGrid = document.getElementById("productGrid");
+  let cart = []; // This creates the automatic cart list
 
-        setTimeout(() => {
-          event.target.textContent = "Add to Cart";
-        }, 900);
-      }
-    });
+  // 3. Function to draw the products onto the screen
+  function renderProducts() {
+    productGrid.innerHTML = products.map(product => `
+      <article class="product-card">
+        <div class="product-image" style="background-image: url('${product.image}')"></div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.category}</p>
+          <div class="product-bottom">
+            <span class="price">$${product.price}</span>
+            <button class="add-btn" data-id="${product.id}">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
 
-    document.getElementById("cartBtn").addEventListener("click", () => {
-      alert(`You have P{count} item(s) in your cart.`);
-    });
+  // 4. Function to update the cart number automatically
+  function updateCartDisplay() {
+    document.getElementById("cartCount").textContent = cart.length;
+  }
 
-    renderProducts();
-  <script>
+  // 5. Listen for button clicks
+  document.addEventListener("click", event => {
+    if (event.target.classList.contains("add-btn")) {
+      const productId = event.target.getAttribute("data-id");
+      cart.push(productId); // Adds to cart
+      updateCartDisplay(); // Updates the number
+      
+      event.target.textContent = "Added ✓";
+      setTimeout(() => {
+        event.target.textContent = "Add to Cart";
+      }, 1000);
+    }
+  });
+
+  // 6. Cart Button Alert
+  document.getElementById("cartBtn").addEventListener("click", () => {
+    alert(`You have ${cart.length} item(s) in your cart!`);
+  });
+
+  // 7. RUN THE FUNCTION (This makes the products appear!)
+  renderProducts(); 
+</script>
     const products = [
       // ... (product list) ...
     ];
@@ -413,5 +424,6 @@
       alert(`You have ${cart.length} item(s) in your cart!`);
     });
 
-    // ... (other code) ...</body>
-</html>
+html
+  // ... (other code) ...</body>
+<div class="products" id="productGrid"></div>
