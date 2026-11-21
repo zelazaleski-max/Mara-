@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Perfume Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #faf8f5;
+      color: #1f1f1f;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e6e0d8;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1f1f1f;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #9a6b3f;
+    }
+
+    .cart-btn {
+      border: none;
+      background: #1f1f1f;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .hero-text p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: #9a6b3f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hero-image {
+      min-height: 420px;
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)),
+        url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=80")
+        center/cover no-repeat;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 70px auto;
+      padding: 0 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      letter-spacing: -1px;
+    }
+
+    .section-header p {
+      color: #777;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #eee8df;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+    }
+
+    .product-image {
+      height: 230px;
+      background: #eee7dd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-info h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .product-info p {
+      color: #777;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .price {
+      font-weight: 700;
+    }
+
+    .add-btn {
+      border: none;
+      background: #1f1f1f;
+      color: white;
+      padding: 9px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .add-btn:hover {
+      background: #9a6b3f;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px 24px;
+      background: #1f1f1f;
+      color: white;
+      text-align: center;
+    }
+
+    footer p {
+      color: #bbb;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 300px;
+      }
+
+      .section-header {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo">AURA</div>
+
+      <nav>
+        <a href="#">Shop</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">About</a>
+      </nav>
+
+      <button class="cart-btn" id="cartBtn">
+        Cart (<span id="cartCount">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Find Your Signature Scent</h1>
+        <p>
+          Discover curated fragrances for every mood, moment, and personality.
+          Luxury-inspired perfumes without the luxury markup.
+        </p>
+        <a href="#products" class="hero-btn">Shop Fragrances</a>
+      </div>
+
+      <div class="hero-image" aria-label="Perfume bottle"></div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-header">
+        <div>
+          <h2>Best Sellers</h2>
+          <p>Customer favorites this season.</p>
+        </div>
+      </div>
+
+      <div class="products" id="productGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>AURA PERFUME</h3>
+    <p>© 2026 Aura Perfume Shop. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Amber Noir",
+        category: "Warm & Spicy",
+        price: 89,
+        image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        name: "Rose Éclat",
+        category: "Floral",
+        price: 79,
+        image: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        name: "Citrus Muse",
+        category: "Fresh",
+        price: 69,
+        image: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        name: "Velvet Oud",
+        category: "Woody",
+        price: 119,
+        image: "https://images.unsplash.com/photo-1619994403073-2cec844b8e63?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const cartCount = document.getElementById("cartCount");
+    let count = 0;
+
+    function renderProducts() {
+      productGrid.innerHTML = products.map(product => `
+        <article class="product-card">
+          <div class="product-image" style="background-image: url('${product.image}')"></div>
+          <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.category}</p>
+            <div class="product-bottom">
+              <span class="price">$${product.price}</span>
+              <button class="add-btn" data-id="${product.id}">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    document.addEventListener("click", event => {
+      if (event.target.classList.contains("add-btn")) {
+        count++;
+        cartCount.textContent = count;
+        event.target.textContent = "Added ✓";
+
+        setTimeout(() => {
+          event.target.textContent = "Add to Cart";
+        }, 900);
+      }
+    });
+
+    document.getElementById("cartBtn").addEventListener("click", () => {
+      alert(`You have ${count} item(s) in your cart.`);
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>
